@@ -1,0 +1,115 @@
+{
+  "Metadata": {
+    "title": "Prime — Research Peptides from Germany",
+    "titleTemplate": "%s | Prime",
+    "description": "Peptides for research use only (RUO). Shipped from Germany, delivered across the EU. Prices in EUR incl. 19% VAT."
+  },
+  "Brand": {
+    "name": "Prime"
+  },
+  "Nav": {
+    "home": "Home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "cart": "Cart",
+    "shop": {
+      "label": "Shop",
+      "title": "CATALOG",
+      "items": {
+        "all": {
+          "title": "All products",
+          "description": "The full catalog with every size and variant"
+        },
+        "new": {
+          "title": "New arrivals",
+          "description": "The latest additions to the range"
+        },
+        "bundle": {
+          "title": "Buy 3, pay 2",
+          "description": "Add three products to your cart and pay for two",
+          "badge": "OFFER"
+        }
+      }
+    },
+    "quality": {
+      "label": "Quality",
+      "title": "DOCUMENTATION",
+      "items": {
+        "coa": {
+          "title": "Certificates of analysis",
+          "description": "Batch-specific analytical data for every product"
+        },
+        "ruo": {
+          "title": "Research use only",
+          "description": "Why every product is intended for research purposes only"
+        }
+      }
+    },
+    "service": {
+      "label": "Service",
+      "title": "HELP & INFO",
+      "items": {
+        "shipping": {
+          "title": "Shipping",
+          "description": "Shipped from Germany, delivered across the EU"
+        },
+        "payment": {
+          "title": "Payment",
+          "description": "Bank transfer with a personal order reference"
+        },
+        "faq": {
+          "title": "FAQ",
+          "description": "Answers to common questions about orders and delivery"
+        },
+        "contact": {
+          "title": "Contact",
+          "description": "Write to us – we reply on business days"
+        }
+      }
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Choose language",
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "Hero": {
+    "eyebrow": "01 — Research supply",
+    "titleLine1": "Research peptides",
+    "titleLine2": "from Germany",
+    "cta": "Browse catalog",
+    "meta": "Shipped from Germany · EU-wide delivery · Prices incl. 19% VAT",
+    "card": {
+      "title": "Research use only",
+      "body": "All products are intended exclusively for laboratory research. Not for human consumption.",
+      "link": "Learn more",
+      "imageAlt": "Laboratory setting"
+    }
+  },
+  "Footer": {
+    "description": "Prime is a specialist supplier of research peptides – shipped from Germany, delivered across the EU.",
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over.",
+    "shop": {
+      "title": "Shop",
+      "all": "All products",
+      "new": "New arrivals",
+      "bundle": "Buy 3, pay 2"
+    },
+    "service": {
+      "title": "Service",
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "legal": {
+      "title": "Legal",
+      "imprint": "Imprint",
+      "privacy": "Privacy policy",
+      "terms": "Terms & conditions",
+      "withdrawal": "Right of withdrawal"
+    },
+    "copyright": "© {year} Prime. All rights reserved.",
+    "vatNotice": "All prices in EUR incl. 19% VAT, plus shipping."
+  }
+}

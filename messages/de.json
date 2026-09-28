@@ -1,0 +1,115 @@
+{
+  "Metadata": {
+    "title": "Prime — Forschungspeptide aus Deutschland",
+    "titleTemplate": "%s | Prime",
+    "description": "Peptide ausschließlich für Forschungszwecke (RUO). Versand aus Deutschland, Lieferung in die gesamte EU. Preise in EUR inkl. 19 % MwSt."
+  },
+  "Brand": {
+    "name": "Prime"
+  },
+  "Nav": {
+    "home": "Startseite",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "cart": "Warenkorb",
+    "shop": {
+      "label": "Shop",
+      "title": "KATALOG",
+      "items": {
+        "all": {
+          "title": "Alle Produkte",
+          "description": "Der vollständige Katalog mit allen Größen und Varianten"
+        },
+        "new": {
+          "title": "Neu eingetroffen",
+          "description": "Die neuesten Produkte im Sortiment"
+        },
+        "bundle": {
+          "title": "3 kaufen, 2 bezahlen",
+          "description": "Drei Produkte in den Warenkorb legen, nur zwei bezahlen",
+          "badge": "AKTION"
+        }
+      }
+    },
+    "quality": {
+      "label": "Qualität",
+      "title": "DOKUMENTATION",
+      "items": {
+        "coa": {
+          "title": "Analysenzertifikate",
+          "description": "Chargenbezogene Analysedaten zu jedem Produkt"
+        },
+        "ruo": {
+          "title": "Nur für Forschungszwecke",
+          "description": "Warum alle Produkte ausschließlich für die Forschung bestimmt sind"
+        }
+      }
+    },
+    "service": {
+      "label": "Service",
+      "title": "HILFE & INFO",
+      "items": {
+        "shipping": {
+          "title": "Versand",
+          "description": "Versand aus Deutschland, Lieferung in die gesamte EU"
+        },
+        "payment": {
+          "title": "Zahlung",
+          "description": "Banküberweisung mit persönlicher Bestellreferenz"
+        },
+        "faq": {
+          "title": "FAQ",
+          "description": "Antworten auf häufige Fragen zu Bestellung und Lieferung"
+        },
+        "contact": {
+          "title": "Kontakt",
+          "description": "Schreiben Sie uns – wir antworten werktags"
+        }
+      }
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Sprache wählen",
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "Hero": {
+    "eyebrow": "01 — Forschungsbedarf",
+    "titleLine1": "Forschungspeptide",
+    "titleLine2": "aus Deutschland",
+    "cta": "Katalog ansehen",
+    "meta": "Versand aus Deutschland · EU-weite Lieferung · Preise inkl. 19 % MwSt.",
+    "card": {
+      "title": "Nur für Forschungszwecke",
+      "body": "Alle Produkte sind ausschließlich für die Laborforschung bestimmt. Nicht für den menschlichen Verzehr.",
+      "link": "Mehr erfahren",
+      "imageAlt": "Laborumgebung"
+    }
+  },
+  "Footer": {
+    "description": "Prime ist ein Fachhandel für Forschungspeptide – versandt aus Deutschland, geliefert in die gesamte EU.",
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren.",
+    "shop": {
+      "title": "Shop",
+      "all": "Alle Produkte",
+      "new": "Neu eingetroffen",
+      "bundle": "3 kaufen, 2 bezahlen"
+    },
+    "service": {
+      "title": "Service",
+      "shipping": "Versand",
+      "payment": "Zahlung",
+      "faq": "FAQ",
+      "contact": "Kontakt"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "withdrawal": "Widerrufsbelehrung"
+    },
+    "copyright": "© {year} Prime. Alle Rechte vorbehalten.",
+    "vatNotice": "Alle Preise in EUR inkl. 19 % MwSt., zzgl. Versandkosten."
+  }
+}

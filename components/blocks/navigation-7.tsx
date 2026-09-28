@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Link } from "@/i18n/navigation"
+import { cn } from "@/lib/utils"
 
 interface DropdownItem {
   key: string
@@ -52,15 +53,50 @@ export function Navigation7() {
   const [mobileExpandedItem, setMobileExpandedItem] = useState<string | null>(
     null
   )
+  const [isAtTop, setIsAtTop] = useState(true)
+  const [isHidden, setIsHidden] = useState(false)
+
+  // Slides away while scrolling down and returns on the slightest scroll up,
+  // so it stays out of the way without having to go back to the top.
+  useEffect(() => {
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      const delta = y - lastY
+      setIsAtTop(y < 8)
+      if (y < 88) setIsHidden(false)
+      else if (delta > 4) setIsHidden(true)
+      else if (delta < -4) setIsHidden(false)
+      lastY = y
+    }
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  // Solid pills carry their own contrast, so the bar needs no background
+  // over either the dark hero or the light and dark sections below it.
+  const controlClass =
+    "bg-white text-neutral-900 shadow-sm ring-1 ring-black/5 ring-inset transition-colors hover:bg-neutral-100"
 
   return (
     <>
-      <nav className="w-full bg-transparent px-4 py-6 sm:px-6 lg:px-8">
+      <nav
+        className={cn(
+          "fixed inset-x-0 top-0 z-40 w-full px-4 transition-[translate,padding] duration-300 ease-out sm:px-6 lg:px-8",
+          isAtTop ? "py-6" : "py-4",
+          // Keep it in place while a dropdown is open.
+          isHidden && !activeDropdown && "-translate-y-full"
+        )}
+      >
         <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-8">
           <div className="flex items-center gap-2">
             <Link
               href="/"
-              className="flex aspect-square h-10 items-center justify-center rounded-md bg-neutral-200 transition-colors hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800"
+              className={cn(
+                "flex aspect-square h-10 items-center justify-center rounded-md",
+                controlClass
+              )}
               aria-label={t("home")}
             >
               <img
@@ -68,7 +104,7 @@ export function Navigation7() {
                 alt=""
                 width={20}
                 height={20}
-                className="h-5 w-5 dark:invert"
+                className="h-5 w-5"
               />
             </Link>
 
@@ -81,7 +117,10 @@ export function Navigation7() {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className="flex h-10 items-center gap-1.5 rounded-md bg-neutral-200 px-4 text-sm font-medium tracking-tight text-neutral-900 transition-colors hover:bg-neutral-300 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
+                    className={cn(
+                      "flex h-10 items-center gap-1.5 rounded-md px-4 text-sm font-medium tracking-tight",
+                      controlClass
+                    )}
                     aria-expanded={activeDropdown === item.key}
                     aria-haspopup="true"
                   >
@@ -133,10 +172,13 @@ export function Navigation7() {
           </div>
 
           <div className="flex items-center gap-3">
-            <LocaleSwitcher className="hidden md:flex" />
+            <LocaleSwitcher variant="solid" className="hidden md:flex" />
             <Link
               href="/cart"
-              className="flex h-10 items-center gap-2 rounded-md bg-neutral-900 px-4 text-sm font-medium tracking-tight text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
+              className={cn(
+                "flex h-10 items-center gap-2 rounded-md px-4 text-sm font-medium tracking-tight",
+                controlClass
+              )}
             >
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden sm:inline">{t("cart")}</span>
@@ -144,7 +186,10 @@ export function Navigation7() {
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="flex h-10 items-center gap-2 rounded-md bg-neutral-200 px-4 text-sm font-medium tracking-tight text-neutral-900 transition-colors hover:bg-neutral-300 md:hidden dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800"
+              className={cn(
+                "flex h-10 items-center gap-2 rounded-md px-4 text-sm font-medium tracking-tight md:hidden",
+                controlClass
+              )}
               aria-label={t("openMenu")}
             >
               <Menu className="h-4 w-4" />

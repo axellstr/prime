@@ -10,17 +10,10 @@ export function Hero12() {
   return (
     <section className="relative w-full overflow-hidden bg-white px-4 py-12 sm:px-6 lg:px-8 dark:bg-black">
       <div className="relative mx-auto h-full min-h-[600px] w-full max-w-[1400px]">
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl bg-neutral-100 dark:bg-neutral-900">
-          <p className="absolute bottom-6 left-6 hidden font-mono text-xs tracking-widest text-neutral-500 uppercase lg:block">
-            {t("meta")}
-          </p>
-        </div>
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl bg-neutral-200 dark:bg-neutral-800" />
 
         <div className="pointer-events-none absolute top-0 left-0 z-10 flex w-full max-w-2xl flex-col items-start">
           <div className="pointer-events-auto relative w-fit rounded-br-4xl bg-white p-4 dark:bg-black">
-            <p className="mb-3 font-mono text-xs tracking-widest text-neutral-500 uppercase">
-              {t("eyebrow")}
-            </p>
             <h1 className="text-3xl leading-[1.1] font-medium tracking-tight whitespace-nowrap text-neutral-900 sm:text-5xl lg:text-7xl dark:text-white">
               {t("titleLine1")}
             </h1>

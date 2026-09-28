@@ -79,11 +79,65 @@
     "titleLine2": "aus Deutschland",
     "cta": "Katalog ansehen",
     "meta": "Versand aus Deutschland · EU-weite Lieferung · Preise inkl. 19 % MwSt.",
+    "imageAlt": "Prime Labs Forschungspeptid-Fläschchen",
     "card": {
       "title": "Nur für Forschungszwecke",
       "body": "Alle Produkte sind ausschließlich für die Laborforschung bestimmt. Nicht für den menschlichen Verzehr.",
       "link": "Mehr erfahren",
       "imageAlt": "Laborumgebung"
+    }
+  },
+  "Products": {
+    "title": "Ausgewählte Produkte",
+    "summary": "{count} Produkte · Preise inkl. 19 % MwSt.",
+    "quickAdd": "Schnell hinzufügen",
+    "addAria": "{name} in den Warenkorb legen",
+    "badge": {
+      "new": "Neu",
+      "lowStock": "Nur noch wenige"
+    }
+  },
+  "About": {
+    "eyebrow": "Über PrimeLabs",
+    "title": "Fokussiert auf Wissenschaft",
+    "body1": "PrimeLabs ist aus einer einfachen Idee entstanden: eine Sache machen – und die richtig. Wir konzentrieren uns vollständig auf Peptide und richten so unsere ganze Aufmerksamkeit auf Beschaffung, Qualitätskontrolle und Dokumentation – und legen die Messlatte mit jeder Charge höher.",
+    "body2": "Genauso wichtig ist uns, wie wir mit Ihnen zusammenarbeiten: ehrliche Produktinformationen, transparente Preise und ein Team, das Ihre Fragen wirklich beantwortet. Kein Lärm, keine leeren Versprechen – einfach ein Anbieter, auf den Sie sich verlassen können, Bestellung für Bestellung.",
+    "more": "Mehr über uns",
+    "shop": "Jetzt einkaufen",
+    "features": {
+      "quality": {
+        "title": "Premium-Qualität",
+        "body": "Jedes PrimeLabs-Produkt entspricht strengen Laborstandards – mit geprüfter Reinheit und gleichbleibender Qualität von Charge zu Charge."
+      },
+      "packaging": {
+        "title": "Diskrete Verpackung",
+        "body": "Wir versenden Ihre Bestellung zuverlässig innerhalb von 24 Stunden in schlichter, neutraler Verpackung."
+      },
+      "support": {
+        "title": "24/7 Kundenservice",
+        "body": "Fragen zu einer Bestellung oder einem Produkt? Unser Team antwortet per E-Mail, an 7 Tagen die Woche."
+      }
+    }
+  },
+  "Showcase": {
+    "eyebrow": "So arbeiten wir",
+    "items": {
+      "testing": {
+        "title": "Geprüfte Reinheit",
+        "subtitle": "Jedes Produkt entspricht strengen Laborstandards"
+      },
+      "documentation": {
+        "title": "Analysezertifikate",
+        "subtitle": "Chargenspezifische Analysedaten für jedes Produkt"
+      },
+      "dispatch": {
+        "title": "Versand in 24 Stunden",
+        "subtitle": "Zuverlässig, diskret, in neutraler Verpackung"
+      },
+      "delivery": {
+        "title": "Versand aus Deutschland",
+        "subtitle": "Lieferung in die gesamte EU"
+      }
     }
   },
   "Footer": {
@@ -109,7 +163,6 @@
       "terms": "AGB",
       "withdrawal": "Widerrufsbelehrung"
     },
-    "copyright": "© {year} Prime. Alle Rechte vorbehalten.",
-    "vatNotice": "Alle Preise in EUR inkl. 19 % MwSt., zzgl. Versandkosten."
+    "copyright": "© {year} Prime. Alle Rechte vorbehalten."
   }
 }

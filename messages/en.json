@@ -79,11 +79,65 @@
     "titleLine2": "from Germany",
     "cta": "Browse catalog",
     "meta": "Shipped from Germany · EU-wide delivery · Prices incl. 19% VAT",
+    "imageAlt": "Prime Labs research peptide vial",
     "card": {
       "title": "Research use only",
       "body": "All products are intended exclusively for laboratory research. Not for human consumption.",
       "link": "Learn more",
       "imageAlt": "Laboratory setting"
+    }
+  },
+  "Products": {
+    "title": "Featured products",
+    "summary": "{count} products · Prices incl. 19% VAT",
+    "quickAdd": "Quick add",
+    "addAria": "Add {name} to cart",
+    "badge": {
+      "new": "New",
+      "lowStock": "Low stock"
+    }
+  },
+  "About": {
+    "eyebrow": "About PrimeLabs",
+    "title": "Focused on science",
+    "body1": "PrimeLabs started with a simple idea: do one thing, and do it properly. We concentrate entirely on peptides, which lets us put our full attention into sourcing, quality control and documentation – and keep raising the bar with every batch.",
+    "body2": "Just as important is how we work with you: honest product information, straightforward pricing and a team that actually answers your questions. No noise, no overpromising – just a supplier you can count on, order after order.",
+    "more": "More about us",
+    "shop": "Shop now",
+    "features": {
+      "quality": {
+        "title": "Premium quality",
+        "body": "Every PrimeLabs product meets strict laboratory standards, with tested purity and consistent quality from batch to batch."
+      },
+      "packaging": {
+        "title": "Discreet packaging",
+        "body": "We dispatch your order reliably within 24 hours, in plain, neutral packaging."
+      },
+      "support": {
+        "title": "24/7 customer service",
+        "body": "Questions about an order or a product? Our team answers by e-mail, 7 days a week."
+      }
+    }
+  },
+  "Showcase": {
+    "eyebrow": "How we work",
+    "items": {
+      "testing": {
+        "title": "Tested purity",
+        "subtitle": "Every product meets strict laboratory standards"
+      },
+      "documentation": {
+        "title": "Certificates of analysis",
+        "subtitle": "Batch-specific analytical data for every product"
+      },
+      "dispatch": {
+        "title": "Dispatched in 24 hours",
+        "subtitle": "Reliable, discreet, in neutral packaging"
+      },
+      "delivery": {
+        "title": "Shipped from Germany",
+        "subtitle": "Delivered across the EU"
+      }
     }
   },
   "Footer": {
@@ -109,7 +163,6 @@
       "terms": "Terms & conditions",
       "withdrawal": "Right of withdrawal"
     },
-    "copyright": "© {year} Prime. All rights reserved.",
-    "vatNotice": "All prices in EUR incl. 19% VAT, plus shipping."
+    "copyright": "© {year} Prime. All rights reserved."
   }
 }

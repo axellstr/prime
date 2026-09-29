@@ -1,6 +1,6 @@
 import "server-only"
 
-import { render } from "@react-email/components"
+import { render } from "react-email"
 import { createTranslator } from "next-intl"
 
 import { OrderEmail } from "@/components/emails/order-email"

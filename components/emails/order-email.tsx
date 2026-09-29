@@ -11,7 +11,7 @@ import {
   Preview,
   Section,
   Text,
-} from "@react-email/components"
+} from "react-email"
 
 import type { EmailOrder } from "@/lib/email/order-data"
 import type { OrderEmail as Kind } from "@/lib/notifications"

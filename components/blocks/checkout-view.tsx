@@ -40,12 +40,16 @@ export function CheckoutView({
   const router = useRouter()
   const ready = useCartReady()
   const items = useCartItems()
-  const [refreshKey, setRefreshKey] = useState(0)
-  const variants = useCartVariants(items, refreshKey)
+  const [state, formAction, pending] = useActionState(createOrder, initialState)
+  // Each rejection is a new state object, which refetches prices and stock
+  // so the customer sees the current ones before retrying.
+  const variants = useCartVariants(
+    items,
+    state.status === "rejected" ? state : null
+  )
   const cart =
     variants.status === "ready" ? summarizeCart(items, variants.variants) : null
 
-  const [state, formAction, pending] = useActionState(createOrder, initialState)
   // Set by the client-side check; the server result takes over once the
   // form has been sent.
   const [clientInvalid, setClientInvalid] = useState<CheckoutField[] | null>(
@@ -60,9 +64,6 @@ export function CheckoutView({
     if (state.status === "success") {
       router.replace(`/checkout/confirmation/${state.orderId}`)
       clearCart()
-    } else if (state.status === "rejected") {
-      // Show the customer current prices and stock before they retry.
-      setRefreshKey((key) => key + 1)
     } else if (state.status === "invalid") {
       focusFirstInvalid(formRef.current)
     }

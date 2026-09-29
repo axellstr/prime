@@ -144,10 +144,10 @@ type VariantsState =
 
 /** Fetches current prices and stock for the cart's variants and drops items
  *  whose variant is no longer sold. Refetches when the set of variants or
- *  `refreshKey` changes, not on quantity changes. */
+ *  `refreshKey` (compared by identity) changes, not on quantity changes. */
 export function useCartVariants(
   cartItems: CartItem[],
-  refreshKey = 0
+  refreshKey: unknown = null
 ): VariantsState {
   const ids = cartItems.map((item) => item.variantId).sort()
   const key = ids.join(",")

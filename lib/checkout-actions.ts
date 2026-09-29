@@ -9,6 +9,7 @@ import {
   checkoutSchema,
   type CheckoutField,
 } from "@/lib/checkout-schema"
+import { sendOrderEmail } from "@/lib/notifications"
 import { ENABLED_PAYMENT_METHODS, type PaymentMethod } from "@/lib/payments"
 import { PRODUCTS_TAG } from "@/lib/products"
 import {
@@ -93,8 +94,10 @@ export async function createOrder(
     return { status: "failed" }
   }
 
+  const orderId = data[0].order_id
   // Stock changed; product pages pick it up on their next visit.
   revalidateTag(PRODUCTS_TAG, "max")
+  await sendOrderEmail(orderId, "received")
 
-  return { status: "success", orderId: data[0].order_id }
+  return { status: "success", orderId }
 }

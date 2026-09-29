@@ -346,5 +346,47 @@
       "completed": "Ihre Bestellung ist abgeschlossen",
       "cancelled": "Diese Bestellung wurde storniert"
     }
+  },
+  "Emails": {
+    "greeting": "Guten Tag {name},",
+    "signoff": "Mit freundlichen Grüßen",
+    "team": "Ihr Prime-Team",
+    "replyHint": "Fragen zu Ihrer Bestellung? Antworten Sie einfach auf diese E-Mail.",
+    "orderSummary": "Bestellübersicht",
+    "reference": "Bestellung {reference}",
+    "deliveryAddress": "Lieferadresse",
+    "received": {
+      "subject": "Ihre Bestellung {reference} bei Prime",
+      "preview": "Vielen Dank für Ihre Bestellung. Hier sind Ihre Zahlungsdaten.",
+      "title": "Vielen Dank für Ihre Bestellung",
+      "intro": "Wir haben Ihre Bestellung {reference} erhalten. Bitte überweisen Sie den Gesamtbetrag innerhalb von 7 Tagen und geben Sie die Referenz genau an, damit wir Ihre Zahlung zuordnen können. Wir versenden, sobald sie eingegangen ist.",
+      "viewOrder": "Bestellung und Zahlungsdaten ansehen",
+      "legalTitle": "AGB und Widerrufsbelehrung",
+      "legalTodo": "TODO vor dem Start: Hier die vollständige Widerrufsbelehrung und das Muster-Widerrufsformular einfügen.",
+      "terms": "Unsere AGB:"
+    },
+    "paid": {
+      "subject": "Zahlung für Bestellung {reference} eingegangen",
+      "preview": "Ihre Zahlung ist eingegangen. Wir bereiten Ihre Bestellung vor.",
+      "title": "Zahlung eingegangen",
+      "intro": "Vielen Dank, Ihre Zahlung für die Bestellung {reference} ist eingegangen. Wir bereiten Ihre Bestellung jetzt vor und informieren Sie, sobald sie versendet wurde."
+    },
+    "shipped": {
+      "subject": "Ihre Bestellung {reference} wurde versendet",
+      "preview": "Ihre Bestellung ist unterwegs.",
+      "title": "Ihre Bestellung ist unterwegs",
+      "intro": "Ihre Bestellung {reference} wurde an DHL übergeben.",
+      "tracking": "Sendungsnummer",
+      "track": "Sendung verfolgen"
+    },
+    "cancelled": {
+      "subject": "Ihre Bestellung {reference} wurde storniert",
+      "preview": "Ihre Bestellung wurde storniert.",
+      "title": "Bestellung storniert",
+      "intro": "Ihre Bestellung {reference} wurde storniert.",
+      "introUnpaid": "Ihre Bestellung {reference} wurde storniert, da Ihre Zahlung nicht innerhalb von 7 Tagen bei uns eingegangen ist. Falls Sie bereits bezahlt haben, antworten Sie bitte auf diese E-Mail, wir kümmern uns darum.",
+      "refund": "Den bereits gezahlten Betrag erstatten wir Ihnen vollständig.",
+      "shopAgain": "Zum Shop"
+    }
   }
 }

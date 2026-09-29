@@ -14,6 +14,47 @@ export type Database = {
   }
   public: {
     Tables: {
+      order_emails: {
+        Row: {
+          created_at: string
+          error: string | null
+          id: string
+          kind: Database["public"]["Enums"]["order_email_kind"]
+          order_id: string
+          provider_id: string | null
+          recipient: string
+          sent: boolean
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          kind: Database["public"]["Enums"]["order_email_kind"]
+          order_id: string
+          provider_id?: string | null
+          recipient: string
+          sent: boolean
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["order_email_kind"]
+          order_id?: string
+          provider_id?: string | null
+          recipient?: string
+          sent?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_emails_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       order_events: {
         Row: {
           actor: string
@@ -292,8 +333,19 @@ export type Database = {
           order_number: number
         }[]
       }
+      transition_order: {
+        Args: {
+          p_actor: string
+          p_note?: string
+          p_order_id: string
+          p_to_status: Database["public"]["Enums"]["order_status"]
+          p_tracking_number?: string
+        }
+        Returns: Database["public"]["Enums"]["order_status"]
+      }
     }
     Enums: {
+      order_email_kind: "received" | "paid" | "shipped" | "cancelled"
       order_status:
         | "awaiting_payment"
         | "processing"
@@ -430,6 +482,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      order_email_kind: ["received", "paid", "shipped", "cancelled"],
       order_status: [
         "awaiting_payment",
         "processing",

@@ -346,5 +346,47 @@
       "completed": "Your order is complete",
       "cancelled": "This order has been cancelled"
     }
+  },
+  "Emails": {
+    "greeting": "Hello {name},",
+    "signoff": "Best regards",
+    "team": "Your Prime team",
+    "replyHint": "Questions about your order? Just reply to this email.",
+    "orderSummary": "Order summary",
+    "reference": "Order {reference}",
+    "deliveryAddress": "Delivery address",
+    "received": {
+      "subject": "Your order {reference} at Prime",
+      "preview": "Thank you for your order. Here are your payment details.",
+      "title": "Thank you for your order",
+      "intro": "We have received your order {reference}. Please transfer the total within 7 days and quote the reference exactly, so we can match your payment. We ship as soon as it has arrived.",
+      "viewOrder": "View order and payment details",
+      "legalTitle": "Terms and cancellation policy",
+      "legalTodo": "TODO before launch: insert the full cancellation policy (Widerrufsbelehrung) and the model withdrawal form here.",
+      "terms": "Our terms and conditions:"
+    },
+    "paid": {
+      "subject": "Payment received for order {reference}",
+      "preview": "Your payment has arrived. We are preparing your order.",
+      "title": "Payment received",
+      "intro": "Thank you, your payment for order {reference} has arrived. We are now preparing your order and will let you know as soon as it has been shipped."
+    },
+    "shipped": {
+      "subject": "Your order {reference} has been shipped",
+      "preview": "Your order is on its way.",
+      "title": "Your order is on its way",
+      "intro": "Your order {reference} has been handed over to DHL.",
+      "tracking": "Tracking number",
+      "track": "Track shipment"
+    },
+    "cancelled": {
+      "subject": "Your order {reference} has been cancelled",
+      "preview": "Your order has been cancelled.",
+      "title": "Order cancelled",
+      "intro": "Your order {reference} has been cancelled.",
+      "introUnpaid": "Your order {reference} has been cancelled because we did not receive your payment within 7 days. If you have already paid, please reply to this email and we will sort it out.",
+      "refund": "You will receive a full refund of the amount you paid.",
+      "shopAgain": "Visit the shop"
+    }
   }
 }

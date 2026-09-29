@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl"
 
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Link } from "@/i18n/navigation"
+import { summarizeCart, useCartItems } from "@/lib/cart"
 import { cn } from "@/lib/utils"
 
 interface DropdownItem {
@@ -25,7 +26,6 @@ const navItems: NavItem[] = [
     items: [
       { key: "all", href: "/shop" },
       { key: "new", href: "/shop/new" },
-      { key: "bundle", href: "/shop/bundle", hasBadge: true },
     ],
   },
   {
@@ -55,6 +55,7 @@ export function Navigation7() {
   )
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
+  const cartCount = summarizeCart(useCartItems()).count
 
   // Slides away while scrolling down and returns on the slightest scroll up,
   // so it stays out of the way without having to go back to the top.
@@ -175,6 +176,7 @@ export function Navigation7() {
             <LocaleSwitcher variant="solid" className="hidden md:flex" />
             <Link
               href="/cart"
+              aria-label={t("cartCount", { count: cartCount })}
               className={cn(
                 "flex h-10 items-center gap-2 rounded-md px-4 text-sm font-medium tracking-tight",
                 controlClass
@@ -182,6 +184,11 @@ export function Navigation7() {
             >
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden sm:inline">{t("cart")}</span>
+              {cartCount > 0 && (
+                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-[11px] font-semibold text-white tabular-nums">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             <button
@@ -296,6 +303,11 @@ export function Navigation7() {
             >
               <ShoppingBag className="h-4 w-4" />
               {t("cart")}
+              {cartCount > 0 && (
+                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 text-[11px] font-semibold text-neutral-900 tabular-nums dark:bg-neutral-900 dark:text-white">
+                  {cartCount}
+                </span>
+              )}
             </Link>
           </div>
         </div>

@@ -22,6 +22,9 @@ const fontMono = Geist_Mono({
 const CLIENT_NAMESPACES = [
   "Nav",
   "Products",
+  "Shop",
+  "Product",
+  "Cart",
   "Showcase",
   "LocaleSwitcher",
 ] as const
@@ -73,8 +76,12 @@ export default async function LocaleLayout({
   )
 
   return (
+    // suppressHydrationWarning: browser extensions (password managers,
+    // Bitdefender, Grammarly…) stamp attributes onto <html>/<body> before
+    // React hydrates. Only silences this element's own attributes.
     <html
       lang={locale}
+      suppressHydrationWarning
       className={cn(
         "antialiased",
         fontMono.variable,
@@ -82,7 +89,7 @@ export default async function LocaleLayout({
         geist.variable
       )}
     >
-      <body>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider messages={clientMessages}>
           {children}
         </NextIntlClientProvider>

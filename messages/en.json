@@ -12,6 +12,7 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "cart": "Cart",
+    "cartCount": "{count, plural, =0 {Cart} one {Cart, # item} other {Cart, # items}}",
     "shop": {
       "label": "Shop",
       "title": "CATALOG",
@@ -23,11 +24,6 @@
         "new": {
           "title": "New arrivals",
           "description": "The latest additions to the range"
-        },
-        "bundle": {
-          "title": "Buy 3, pay 2",
-          "description": "Add three products to your cart and pay for two",
-          "badge": "OFFER"
         }
       }
     },
@@ -97,6 +93,93 @@
       "lowStock": "Low stock"
     }
   },
+  "Shop": {
+    "metaTitle": "Shop",
+    "metaDescription": "All research peptides in one catalog. Shipped from Germany, delivered across the EU. Prices in EUR incl. 19% VAT.",
+    "eyebrow": "Catalog",
+    "title": "All products",
+    "summary": "{count} products · Shipped from Germany · Prices incl. 19% VAT",
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over.",
+    "filter": {
+      "label": "Filter by size",
+      "all": "All",
+      "reset": "Show all products"
+    },
+    "sort": {
+      "label": "Sort by",
+      "featured": "Featured",
+      "priceAsc": "Price: low to high",
+      "priceDesc": "Price: high to low"
+    },
+    "results": "{count, plural, one {# product} other {# products}}",
+    "empty": "No products match this filter."
+  },
+  "Product": {
+    "breadcrumb": "Breadcrumb",
+    "vat": "incl. 19% VAT, plus shipping",
+    "unitPrice": "{quantity} × {price}",
+    "description": "{name} is supplied as {spec} for laboratory research. Every batch is tested and comes with its own certificate of analysis.",
+    "quantity": "Quantity",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "addToCart": "Add to cart",
+    "assurances": {
+      "coa": "Certificate of analysis for every batch",
+      "dispatch": "Dispatched within 24 hours in neutral packaging",
+      "delivery": "Shipped from Germany, delivered across the EU"
+    },
+    "details": {
+      "specs": {
+        "title": "Specifications",
+        "size": "Size",
+        "documentation": "Documentation",
+        "documentationValue": "Batch-specific certificate of analysis",
+        "use": "Intended use",
+        "useValue": "Research use only (RUO)"
+      },
+      "shipping": {
+        "title": "Shipping",
+        "body": "Orders are dispatched from Germany within 24 hours in plain, neutral packaging and delivered across the EU."
+      },
+      "payment": {
+        "title": "Payment",
+        "body": "Pay by bank transfer. You receive a personal order reference with your order confirmation."
+      }
+    },
+    "related": "You may also like",
+    "viewAll": "View all",
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over."
+  },
+  "Cart": {
+    "eyebrow": "Cart",
+    "title": "Your cart",
+    "count": "{count, plural, one {# item} other {# items}}",
+    "remove": "Remove {name} from cart",
+    "summary": {
+      "title": "Order summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "shippingValue": "Calculated at checkout",
+      "total": "Total",
+      "vat": "incl. 19% VAT ({amount})",
+      "checkout": "Checkout",
+      "checkoutSoon": "Online checkout is coming soon."
+    },
+    "continue": "Continue shopping",
+    "empty": {
+      "title": "Your cart is empty",
+      "body": "Browse the catalog and add products to get started.",
+      "cta": "Browse catalog"
+    },
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over."
+  },
+  "NotFound": {
+    "eyebrow": "404 — Not found",
+    "heading": "This page doesn’t exist",
+    "body": "The page may have moved, or it isn’t available yet. Browse the catalog or head back to the start page.",
+    "shop": "Browse catalog",
+    "home": "Back to home"
+  },
   "About": {
     "eyebrow": "About PrimeLabs",
     "title": "Focused on science",
@@ -146,8 +229,7 @@
     "shop": {
       "title": "Shop",
       "all": "All products",
-      "new": "New arrivals",
-      "bundle": "Buy 3, pay 2"
+      "new": "New arrivals"
     },
     "service": {
       "title": "Service",

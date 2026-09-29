@@ -12,6 +12,7 @@
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
     "cart": "Warenkorb",
+    "cartCount": "{count, plural, =0 {Warenkorb} one {Warenkorb, # Artikel} other {Warenkorb, # Artikel}}",
     "shop": {
       "label": "Shop",
       "title": "KATALOG",
@@ -23,11 +24,6 @@
         "new": {
           "title": "Neu eingetroffen",
           "description": "Die neuesten Produkte im Sortiment"
-        },
-        "bundle": {
-          "title": "3 kaufen, 2 bezahlen",
-          "description": "Drei Produkte in den Warenkorb legen, nur zwei bezahlen",
-          "badge": "AKTION"
         }
       }
     },
@@ -97,6 +93,93 @@
       "lowStock": "Nur noch wenige"
     }
   },
+  "Shop": {
+    "metaTitle": "Shop",
+    "metaDescription": "Alle Forschungspeptide in einem Katalog. Versand aus Deutschland, Lieferung in die gesamte EU. Preise in EUR inkl. 19 % MwSt.",
+    "eyebrow": "Katalog",
+    "title": "Alle Produkte",
+    "summary": "{count} Produkte · Versand aus Deutschland · Preise inkl. 19 % MwSt.",
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren.",
+    "filter": {
+      "label": "Nach Größe filtern",
+      "all": "Alle",
+      "reset": "Alle Produkte anzeigen"
+    },
+    "sort": {
+      "label": "Sortieren nach",
+      "featured": "Empfohlen",
+      "priceAsc": "Preis: aufsteigend",
+      "priceDesc": "Preis: absteigend"
+    },
+    "results": "{count, plural, one {# Produkt} other {# Produkte}}",
+    "empty": "Keine Produkte entsprechen diesem Filter."
+  },
+  "Product": {
+    "breadcrumb": "Brotkrümelnavigation",
+    "vat": "inkl. 19 % MwSt., zzgl. Versand",
+    "unitPrice": "{quantity} × {price}",
+    "description": "{name} wird als {spec} für die Laborforschung geliefert. Jede Charge wird geprüft und mit einem eigenen Analysezertifikat ausgeliefert.",
+    "quantity": "Menge",
+    "decrease": "Menge verringern",
+    "increase": "Menge erhöhen",
+    "addToCart": "In den Warenkorb",
+    "assurances": {
+      "coa": "Analysezertifikat für jede Charge",
+      "dispatch": "Versand innerhalb von 24 Stunden in neutraler Verpackung",
+      "delivery": "Versand aus Deutschland, Lieferung in die gesamte EU"
+    },
+    "details": {
+      "specs": {
+        "title": "Spezifikationen",
+        "size": "Größe",
+        "documentation": "Dokumentation",
+        "documentationValue": "Chargenspezifisches Analysezertifikat",
+        "use": "Verwendungszweck",
+        "useValue": "Nur für Forschungszwecke (RUO)"
+      },
+      "shipping": {
+        "title": "Versand",
+        "body": "Bestellungen werden innerhalb von 24 Stunden aus Deutschland in schlichter, neutraler Verpackung versendet und in die gesamte EU geliefert."
+      },
+      "payment": {
+        "title": "Zahlung",
+        "body": "Bezahlung per Banküberweisung. Mit der Bestellbestätigung erhalten Sie eine persönliche Bestellreferenz."
+      }
+    },
+    "related": "Das könnte Ihnen auch gefallen",
+    "viewAll": "Alle ansehen",
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren."
+  },
+  "Cart": {
+    "eyebrow": "Warenkorb",
+    "title": "Ihr Warenkorb",
+    "count": "{count, plural, one {# Artikel} other {# Artikel}}",
+    "remove": "{name} aus dem Warenkorb entfernen",
+    "summary": {
+      "title": "Bestellübersicht",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "shippingValue": "Wird an der Kasse berechnet",
+      "total": "Gesamt",
+      "vat": "inkl. 19 % MwSt. ({amount})",
+      "checkout": "Zur Kasse",
+      "checkoutSoon": "Die Online-Kasse ist bald verfügbar."
+    },
+    "continue": "Weiter einkaufen",
+    "empty": {
+      "title": "Ihr Warenkorb ist leer",
+      "body": "Stöbern Sie im Katalog und legen Sie Produkte in den Warenkorb.",
+      "cta": "Zum Katalog"
+    },
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren."
+  },
+  "NotFound": {
+    "eyebrow": "404 — Nicht gefunden",
+    "heading": "Diese Seite gibt es nicht",
+    "body": "Die Seite wurde möglicherweise verschoben oder ist noch nicht verfügbar. Stöbern Sie im Katalog oder kehren Sie zur Startseite zurück.",
+    "shop": "Zum Katalog",
+    "home": "Zur Startseite"
+  },
   "About": {
     "eyebrow": "Über PrimeLabs",
     "title": "Fokussiert auf Wissenschaft",
@@ -146,8 +229,7 @@
     "shop": {
       "title": "Shop",
       "all": "Alle Produkte",
-      "new": "Neu eingetroffen",
-      "bundle": "3 kaufen, 2 bezahlen"
+      "new": "Neu eingetroffen"
     },
     "service": {
       "title": "Service",

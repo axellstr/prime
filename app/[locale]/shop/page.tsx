@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Footer5 } from "@/components/blocks/footer-5"
 import { Navigation7 } from "@/components/blocks/navigation-7"
 import { ShopCatalog } from "@/components/blocks/shop-catalog"
-import { products } from "@/lib/products"
+import { getProducts } from "@/lib/products"
 
 export async function generateMetadata({
   params,
@@ -28,20 +28,21 @@ export default async function ShopPage({
 }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const products = await getProducts()
 
   return (
     <>
       <Navigation7 />
       <main>
-        <ShopHeader />
-        <ShopCatalog />
+        <ShopHeader count={products.length} />
+        <ShopCatalog products={products} />
       </main>
       <Footer5 />
     </>
   )
 }
 
-function ShopHeader() {
+function ShopHeader({ count }: { count: number }) {
   const t = useTranslations("Shop")
 
   return (
@@ -57,7 +58,7 @@ function ShopHeader() {
             {t("title")}
           </h1>
           <p className="mt-5 text-sm leading-relaxed text-neutral-600 sm:text-base dark:text-neutral-400">
-            {t("summary", { count: products.length })}
+            {t("summary", { count })}
           </p>
         </div>
       </div>

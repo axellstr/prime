@@ -25,6 +25,7 @@ const CLIENT_NAMESPACES = [
   "Shop",
   "Product",
   "Cart",
+  "Checkout",
   "Showcase",
   "LocaleSwitcher",
 ] as const

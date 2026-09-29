@@ -10,12 +10,14 @@ export function QuantityStepper({
   value,
   onChange,
   min = 1,
+  max = MAX_QUANTITY,
   size = "default",
   className,
 }: {
   value: number
   onChange: (value: number) => void
   min?: number
+  max?: number
   size?: "default" | "sm"
   className?: string
 }) {
@@ -54,7 +56,7 @@ export function QuantityStepper({
       <button
         type="button"
         onClick={() => onChange(value + 1)}
-        disabled={value >= MAX_QUANTITY}
+        disabled={value >= max}
         aria-label={t("increase")}
         className={stepClass}
       >

@@ -86,12 +86,14 @@
   "Products": {
     "title": "Ausgewählte Produkte",
     "summary": "{count} Produkte · Preise inkl. 19 % MwSt.",
-    "quickAdd": "Schnell hinzufügen",
+    "quickAdd": "Schnell hinzufügen · {label}",
     "addAria": "{name} in den Warenkorb legen",
     "badge": {
       "new": "Neu",
       "lowStock": "Nur noch wenige"
-    }
+    },
+    "fromPrice": "ab {price}",
+    "soldOut": "Ausverkauft"
   },
   "Shop": {
     "metaTitle": "Shop",
@@ -118,7 +120,7 @@
     "breadcrumb": "Brotkrümelnavigation",
     "vat": "inkl. 19 % MwSt., zzgl. Versand",
     "unitPrice": "{quantity} × {price}",
-    "description": "{name} wird als {spec} für die Laborforschung geliefert. Jede Charge wird geprüft und mit einem eigenen Analysezertifikat ausgeliefert.",
+    "description": "{name} für die Laborforschung, erhältlich in {sizes}. Jede Charge wird geprüft und mit einem eigenen Analysezertifikat ausgeliefert.",
     "quantity": "Menge",
     "decrease": "Menge verringern",
     "increase": "Menge erhöhen",
@@ -131,11 +133,12 @@
     "details": {
       "specs": {
         "title": "Spezifikationen",
-        "size": "Größe",
         "documentation": "Dokumentation",
         "documentationValue": "Chargenspezifisches Analysezertifikat",
         "use": "Verwendungszweck",
-        "useValue": "Nur für Forschungszwecke (RUO)"
+        "useValue": "Nur für Forschungszwecke (RUO)",
+        "form": "Form & Reinheit",
+        "sizes": "Verfügbare Mengen"
       },
       "shipping": {
         "title": "Versand",
@@ -148,7 +151,9 @@
     },
     "related": "Das könnte Ihnen auch gefallen",
     "viewAll": "Alle ansehen",
-    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren."
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren.",
+    "amount": "Menge",
+    "soldOut": "Ausverkauft"
   },
   "Cart": {
     "eyebrow": "Warenkorb",
@@ -159,11 +164,12 @@
       "title": "Bestellübersicht",
       "subtotal": "Zwischensumme",
       "shipping": "Versand",
-      "shippingValue": "Wird an der Kasse berechnet",
       "total": "Gesamt",
       "vat": "inkl. 19 % MwSt. ({amount})",
       "checkout": "Zur Kasse",
-      "checkoutSoon": "Die Online-Kasse ist bald verfügbar."
+      "shippingFree": "Kostenlos",
+      "freeShippingFrom": "Kostenloser Versand ab {amount}",
+      "fixStock": "Bitte passen Sie die oben markierten Artikel an, um fortzufahren."
     },
     "continue": "Weiter einkaufen",
     "empty": {
@@ -171,7 +177,12 @@
       "body": "Stöbern Sie im Katalog und legen Sie Produkte in den Warenkorb.",
       "cta": "Zum Katalog"
     },
-    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren."
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren.",
+    "loadError": "Die Preise konnten nicht geladen werden. Bitte laden Sie die Seite neu.",
+    "stock": {
+      "soldOut": "Ausverkauft. Bitte entfernen Sie den Artikel, um fortzufahren.",
+      "limited": "Nur noch {count} auf Lager."
+    }
   },
   "NotFound": {
     "eyebrow": "404 — Nicht gefunden",
@@ -246,5 +257,94 @@
       "withdrawal": "Widerrufsbelehrung"
     },
     "copyright": "© {year} Prime. Alle Rechte vorbehalten."
+  },
+  "Checkout": {
+    "metaTitle": "Kasse",
+    "eyebrow": "Kasse",
+    "title": "Ihre Angaben",
+    "optional": "(optional)",
+    "contact": {
+      "title": "Kontakt"
+    },
+    "address": {
+      "title": "Lieferadresse"
+    },
+    "fields": {
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "name": "Vor- und Nachname",
+      "street": "Straße und Hausnummer",
+      "zip": "PLZ",
+      "city": "Ort",
+      "country": "Land"
+    },
+    "payment": {
+      "title": "Zahlung",
+      "methods": {
+        "bank_transfer": {
+          "label": "Banküberweisung (Vorkasse)",
+          "description": "Nach der Bestellung erhalten Sie unsere Bankverbindung und Ihre Bestellreferenz. Wir versenden, sobald Ihre Zahlung eingegangen ist."
+        }
+      }
+    },
+    "summary": {
+      "title": "Ihre Bestellung",
+      "edit": "Warenkorb bearbeiten"
+    },
+    "stock": {
+      "soldOut": "Ausverkauft",
+      "limited": "Nur noch {count} auf Lager"
+    },
+    "terms": "Ich habe die <agb>AGB</agb> und die <widerruf>Widerrufsbelehrung</widerruf> gelesen und akzeptiere sie.",
+    "submit": "Zahlungspflichtig bestellen",
+    "submitting": "Bestellung wird gesendet…",
+    "redirecting": "Bestellung aufgegeben. Ihre Bestätigung wird geladen…",
+    "loadError": "Die Preise konnten nicht geladen werden. Bitte laden Sie die Seite neu.",
+    "backToCart": "Zum Warenkorb",
+    "failed": "Etwas ist schiefgelaufen, Ihre Bestellung wurde nicht aufgegeben. Bitte versuchen Sie es erneut.",
+    "rejected": {
+      "unavailable": "Einige Artikel sind nicht mehr verfügbar.",
+      "outOfStock": "Einige Artikel sind nicht mehr in der gewünschten Menge auf Lager.",
+      "priceChanged": "Die Preise haben sich geändert, seit Sie diese Seite geöffnet haben. Bitte prüfen Sie die aktualisierte Summe und bestellen Sie erneut.",
+      "invalidCart": "Ihr Warenkorb konnte nicht verarbeitet werden. Bitte prüfen Sie ihn und versuchen Sie es erneut."
+    },
+    "errors": {
+      "summary": "Bitte prüfen Sie die markierten Felder.",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "phone": "Bitte geben Sie eine gültige Telefonnummer ein oder lassen Sie das Feld leer.",
+      "name": "Bitte geben Sie Ihren vollständigen Namen ein.",
+      "street": "Bitte geben Sie Straße und Hausnummer ein.",
+      "zip": "Bitte geben Sie eine gültige Postleitzahl ein.",
+      "city": "Bitte geben Sie Ihren Ort ein.",
+      "country": "Bitte wählen Sie ein Land, in das wir liefern.",
+      "terms": "Bitte akzeptieren Sie die AGB und die Widerrufsbelehrung."
+    },
+    "ruoNotice": "Alle Produkte sind ausschließlich für Forschungszwecke (RUO) bestimmt und nicht für den menschlichen Verzehr. Verkauf nur an Personen ab 18 Jahren."
+  },
+  "Confirmation": {
+    "metaTitle": "Bestellbestätigung",
+    "eyebrow": "Bestellung {reference}",
+    "title": "Vielen Dank für Ihre Bestellung",
+    "body": "Wir haben Ihre Bestellung {reference} erhalten. Bitte überweisen Sie den unten stehenden Betrag, damit wir sie versenden können.",
+    "statusBody": "Bestellung {reference}",
+    "keepPage": "Bitte bewahren Sie diese Seite auf: Sie enthält Ihre Zahlungsdaten.",
+    "summary": "Bestellübersicht",
+    "continue": "Weiter einkaufen",
+    "bankTransfer": {
+      "title": "Banküberweisung",
+      "body": "Bitte überweisen Sie den Gesamtbetrag innerhalb von 7 Tagen und geben Sie die Referenz genau an, damit wir Ihre Zahlung zuordnen können. Wir versenden, sobald sie eingegangen ist.",
+      "holder": "Kontoinhaber",
+      "iban": "IBAN",
+      "bic": "BIC",
+      "amount": "Betrag",
+      "reference": "Verwendungszweck"
+    },
+    "status": {
+      "awaiting_payment": "Zahlung ausstehend",
+      "processing": "Zahlung eingegangen, Ihre Bestellung wird vorbereitet",
+      "shipped": "Ihre Bestellung wurde versendet",
+      "completed": "Ihre Bestellung ist abgeschlossen",
+      "cancelled": "Diese Bestellung wurde storniert"
+    }
   }
 }

@@ -86,12 +86,14 @@
   "Products": {
     "title": "Featured products",
     "summary": "{count} products · Prices incl. 19% VAT",
-    "quickAdd": "Quick add",
+    "quickAdd": "Quick add · {label}",
     "addAria": "Add {name} to cart",
     "badge": {
       "new": "New",
       "lowStock": "Low stock"
-    }
+    },
+    "fromPrice": "from {price}",
+    "soldOut": "Sold out"
   },
   "Shop": {
     "metaTitle": "Shop",
@@ -118,7 +120,7 @@
     "breadcrumb": "Breadcrumb",
     "vat": "incl. 19% VAT, plus shipping",
     "unitPrice": "{quantity} × {price}",
-    "description": "{name} is supplied as {spec} for laboratory research. Every batch is tested and comes with its own certificate of analysis.",
+    "description": "{name} for laboratory research, available in {sizes}. Every batch is tested and comes with its own certificate of analysis.",
     "quantity": "Quantity",
     "decrease": "Decrease quantity",
     "increase": "Increase quantity",
@@ -131,11 +133,12 @@
     "details": {
       "specs": {
         "title": "Specifications",
-        "size": "Size",
         "documentation": "Documentation",
         "documentationValue": "Batch-specific certificate of analysis",
         "use": "Intended use",
-        "useValue": "Research use only (RUO)"
+        "useValue": "Research use only (RUO)",
+        "form": "Form & purity",
+        "sizes": "Available amounts"
       },
       "shipping": {
         "title": "Shipping",
@@ -148,7 +151,9 @@
     },
     "related": "You may also like",
     "viewAll": "View all",
-    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over."
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over.",
+    "amount": "Amount",
+    "soldOut": "Sold out"
   },
   "Cart": {
     "eyebrow": "Cart",
@@ -159,11 +164,12 @@
       "title": "Order summary",
       "subtotal": "Subtotal",
       "shipping": "Shipping",
-      "shippingValue": "Calculated at checkout",
       "total": "Total",
       "vat": "incl. 19% VAT ({amount})",
       "checkout": "Checkout",
-      "checkoutSoon": "Online checkout is coming soon."
+      "shippingFree": "Free",
+      "freeShippingFrom": "Free shipping from {amount}",
+      "fixStock": "Please adjust the items marked above to continue."
     },
     "continue": "Continue shopping",
     "empty": {
@@ -171,7 +177,12 @@
       "body": "Browse the catalog and add products to get started.",
       "cta": "Browse catalog"
     },
-    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over."
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over.",
+    "loadError": "Prices could not be loaded. Please reload the page.",
+    "stock": {
+      "soldOut": "Sold out. Please remove it to continue.",
+      "limited": "Only {count} left in stock."
+    }
   },
   "NotFound": {
     "eyebrow": "404 — Not found",
@@ -246,5 +257,94 @@
       "withdrawal": "Right of withdrawal"
     },
     "copyright": "© {year} Prime. All rights reserved."
+  },
+  "Checkout": {
+    "metaTitle": "Checkout",
+    "eyebrow": "Checkout",
+    "title": "Your details",
+    "optional": "(optional)",
+    "contact": {
+      "title": "Contact"
+    },
+    "address": {
+      "title": "Delivery address"
+    },
+    "fields": {
+      "email": "Email",
+      "phone": "Phone",
+      "name": "Full name",
+      "street": "Street and house number",
+      "zip": "Postcode",
+      "city": "City",
+      "country": "Country"
+    },
+    "payment": {
+      "title": "Payment",
+      "methods": {
+        "bank_transfer": {
+          "label": "Bank transfer (prepayment)",
+          "description": "After placing your order you receive our bank details and your order reference. We ship as soon as your payment has arrived."
+        }
+      }
+    },
+    "summary": {
+      "title": "Your order",
+      "edit": "Edit cart"
+    },
+    "stock": {
+      "soldOut": "Sold out",
+      "limited": "Only {count} left in stock"
+    },
+    "terms": "I have read and accept the <agb>terms and conditions</agb> and the <widerruf>cancellation policy</widerruf>.",
+    "submit": "Place order with obligation to pay",
+    "submitting": "Placing order…",
+    "redirecting": "Order placed. Loading your confirmation…",
+    "loadError": "Prices could not be loaded. Please reload the page.",
+    "backToCart": "Back to cart",
+    "failed": "Something went wrong and your order was not placed. Please try again.",
+    "rejected": {
+      "unavailable": "Some items are no longer available.",
+      "outOfStock": "Some items are no longer in stock in the requested quantity.",
+      "priceChanged": "Prices have changed since you opened this page. Please check the updated total and place your order again.",
+      "invalidCart": "Your cart could not be processed. Please review it and try again."
+    },
+    "errors": {
+      "summary": "Please check the highlighted fields.",
+      "email": "Please enter a valid email address.",
+      "phone": "Please enter a valid phone number or leave the field empty.",
+      "name": "Please enter your full name.",
+      "street": "Please enter your street and house number.",
+      "zip": "Please enter a valid postcode.",
+      "city": "Please enter your city.",
+      "country": "Please choose a country we ship to.",
+      "terms": "Please accept the terms and conditions and the cancellation policy."
+    },
+    "ruoNotice": "All products are intended for research use only (RUO) and are not for human consumption. Sold only to persons aged 18 and over."
+  },
+  "Confirmation": {
+    "metaTitle": "Order confirmation",
+    "eyebrow": "Order {reference}",
+    "title": "Thank you for your order",
+    "body": "We have received your order {reference}. Please transfer the amount below so we can ship it.",
+    "statusBody": "Order {reference}",
+    "keepPage": "Please keep this page: it holds your payment details.",
+    "summary": "Order summary",
+    "continue": "Continue shopping",
+    "bankTransfer": {
+      "title": "Bank transfer",
+      "body": "Please transfer the total within 7 days and quote the reference exactly, so we can match your payment. We ship as soon as it has arrived.",
+      "holder": "Account holder",
+      "iban": "IBAN",
+      "bic": "BIC",
+      "amount": "Amount",
+      "reference": "Reference"
+    },
+    "status": {
+      "awaiting_payment": "Awaiting payment",
+      "processing": "Payment received, your order is being prepared",
+      "shipped": "Your order has been shipped",
+      "completed": "Your order is complete",
+      "cancelled": "This order has been cancelled"
+    }
   }
 }

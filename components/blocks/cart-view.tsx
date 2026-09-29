@@ -1,23 +1,32 @@
 "use client"
 
 import { ArrowRight, ShoppingBag, X } from "lucide-react"
-import { useFormatter, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 
+import { OrderTotals } from "@/components/order-totals"
 import { QuantityStepper } from "@/components/quantity-stepper"
 import { Link } from "@/i18n/navigation"
 import {
+  MAX_QUANTITY,
   removeFromCart,
   setQuantity,
   summarizeCart,
   useCartItems,
   useCartReady,
+  useCartVariants,
   type CartLine,
 } from "@/lib/cart"
+import { useFormatCents } from "@/lib/money"
+
+type Summary = ReturnType<typeof summarizeCart>
 
 export function CartView() {
   const t = useTranslations("Cart")
   const ready = useCartReady()
-  const cart = summarizeCart(useCartItems())
+  const items = useCartItems()
+  const variants = useCartVariants(items)
+  const cart =
+    variants.status === "ready" ? summarizeCart(items, variants.variants) : null
 
   return (
     // The 88px navigation bar overlays the top, so the content is pushed
@@ -31,7 +40,14 @@ export function CartView() {
           {t("title")}
         </h1>
 
-        {!ready ? (
+        {variants.status === "error" ? (
+          <p
+            role="alert"
+            className="mt-10 rounded-2xl bg-neutral-100 px-6 py-10 text-center text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400"
+          >
+            {t("loadError")}
+          </p>
+        ) : !ready || !cart ? (
           <CartSkeleton />
         ) : cart.lines.length === 0 ? (
           <EmptyCart />
@@ -43,7 +59,7 @@ export function CartView() {
               </p>
               <ul>
                 {cart.lines.map((line) => (
-                  <CartRow key={line.id} line={line} />
+                  <CartRow key={line.variantId} line={line} />
                 ))}
               </ul>
             </div>
@@ -58,19 +74,19 @@ export function CartView() {
 
 function CartRow({ line }: { line: CartLine }) {
   const t = useTranslations("Cart")
-  const format = useFormatter()
-  const eur = (value: number) =>
-    format.number(value, { style: "currency", currency: "EUR" })
+  const formatCents = useFormatCents()
+  const { variant } = line
+  const { product } = variant
 
   return (
     <li className="flex gap-4 border-b border-neutral-200 py-5 sm:gap-6 dark:border-neutral-800">
       <Link
-        href={`/shop/${line.product.slug}`}
+        href={`/shop/${product.slug}`}
         tabIndex={-1}
         className="relative aspect-[3/4] w-20 shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 sm:w-24 dark:border-neutral-800 dark:bg-neutral-900"
       >
         <img
-          src="/pep.webp"
+          src={product.imageUrl}
           alt=""
           width={600}
           height={600}
@@ -83,20 +99,29 @@ function CartRow({ line }: { line: CartLine }) {
           <div className="min-w-0">
             <h2 className="truncate text-[15px] font-medium text-neutral-900 dark:text-white">
               <Link
-                href={`/shop/${line.product.slug}`}
+                href={`/shop/${product.slug}`}
                 className="hover:underline hover:underline-offset-4"
               >
-                {line.product.name}
+                {product.name}
               </Link>
             </h2>
             <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
-              {line.product.spec} · {eur(line.product.price)}
+              {variant.label} · {formatCents(variant.priceCents)}
             </p>
+            {line.quantity > variant.stock && (
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                {variant.stock === 0
+                  ? t("stock.soldOut")
+                  : t("stock.limited", { count: variant.stock })}
+              </p>
+            )}
           </div>
           <button
             type="button"
-            onClick={() => removeFromCart(line.id)}
-            aria-label={t("remove", { name: line.product.name })}
+            onClick={() => removeFromCart(line.variantId)}
+            aria-label={t("remove", {
+              name: `${product.name} ${variant.label}`,
+            })}
             className="-m-2 flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-lg text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-white"
           >
             <X className="h-4 w-4" />
@@ -107,10 +132,11 @@ function CartRow({ line }: { line: CartLine }) {
           <QuantityStepper
             size="sm"
             value={line.quantity}
-            onChange={(next) => setQuantity(line.id, next)}
+            onChange={(next) => setQuantity(line.variantId, next)}
+            max={Math.max(1, Math.min(variant.stock, MAX_QUANTITY))}
           />
           <p className="text-sm font-medium text-neutral-900 tabular-nums dark:text-white">
-            {eur(line.total)}
+            {formatCents(line.totalCents)}
           </p>
         </div>
       </div>
@@ -118,11 +144,8 @@ function CartRow({ line }: { line: CartLine }) {
   )
 }
 
-function CartSummary({ cart }: { cart: ReturnType<typeof summarizeCart> }) {
+function CartSummary({ cart }: { cart: Summary }) {
   const t = useTranslations("Cart")
-  const format = useFormatter()
-  const eur = (value: number) =>
-    format.number(value, { style: "currency", currency: "EUR" })
 
   return (
     <aside className="lg:sticky lg:top-24 lg:self-start">
@@ -131,48 +154,31 @@ function CartSummary({ cart }: { cart: ReturnType<typeof summarizeCart> }) {
           {t("summary.title")}
         </h2>
 
-        <dl className="mt-6 space-y-3 text-sm">
-          <div className="flex justify-between gap-4">
-            <dt className="text-neutral-600 dark:text-neutral-400">
-              {t("summary.subtotal")}
-            </dt>
-            <dd className="text-neutral-900 tabular-nums dark:text-white">
-              {eur(cart.subtotal)}
-            </dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-neutral-600 dark:text-neutral-400">
-              {t("summary.shipping")}
-            </dt>
-            <dd className="text-neutral-600 dark:text-neutral-400">
-              {t("summary.shippingValue")}
-            </dd>
-          </div>
-        </dl>
-
-        <div className="mt-6 flex items-baseline justify-between gap-4 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-          <p className="font-medium text-neutral-900 dark:text-white">
-            {t("summary.total")}
-          </p>
-          <p className="text-2xl font-medium text-neutral-900 tabular-nums dark:text-white">
-            {eur(cart.total)}
-          </p>
+        <div className="mt-6">
+          <OrderTotals {...cart} />
         </div>
-        <p className="mt-1 text-right text-xs text-neutral-500 tabular-nums">
-          {t("summary.vat", { amount: eur(cart.vat) })}
-        </p>
 
-        {/* TODO: link to checkout once it exists. */}
-        <button
-          type="button"
-          disabled
-          className="mt-6 flex h-12 w-full cursor-not-allowed items-center justify-center rounded-xl bg-neutral-900 text-sm font-medium text-white opacity-40 dark:bg-white dark:text-neutral-900"
-        >
-          {t("summary.checkout")}
-        </button>
-        <p className="mt-3 text-center text-xs text-neutral-500">
-          {t("summary.checkoutSoon")}
-        </p>
+        {cart.hasStockIssue ? (
+          <>
+            <button
+              type="button"
+              disabled
+              className="mt-6 flex h-12 w-full cursor-not-allowed items-center justify-center rounded-xl bg-neutral-900 text-sm font-medium text-white opacity-40 dark:bg-white dark:text-neutral-900"
+            >
+              {t("summary.checkout")}
+            </button>
+            <p className="mt-3 text-center text-xs text-red-600 dark:text-red-400">
+              {t("summary.fixStock")}
+            </p>
+          </>
+        ) : (
+          <Link
+            href="/checkout"
+            className="mt-6 flex h-12 w-full items-center justify-center rounded-xl bg-neutral-900 text-sm font-medium text-white hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 dark:focus-visible:ring-white dark:focus-visible:ring-offset-neutral-950"
+          >
+            {t("summary.checkout")}
+          </Link>
+        )}
       </div>
 
       <Link

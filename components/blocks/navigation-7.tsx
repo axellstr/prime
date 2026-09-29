@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Link } from "@/i18n/navigation"
-import { summarizeCart, useCartItems } from "@/lib/cart"
+import { cartCount as countItems, useCartItems } from "@/lib/cart"
 import { cn } from "@/lib/utils"
 
 interface DropdownItem {
@@ -55,7 +55,7 @@ export function Navigation7() {
   )
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHidden, setIsHidden] = useState(false)
-  const cartCount = summarizeCart(useCartItems()).count
+  const cartCount = countItems(useCartItems())
 
   // Slides away while scrolling down and returns on the slightest scroll up,
   // so it stays out of the way without having to go back to the top.

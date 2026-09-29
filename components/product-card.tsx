@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from "react"
 import { Check } from "lucide-react"
-import { useFormatter, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 
 import { Link } from "@/i18n/navigation"
 import { addToCart } from "@/lib/cart"
+import { useFormatCents } from "@/lib/money"
 import type { Product } from "@/lib/products"
 
 export function ProductCard({ product }: { product: Product }) {
   const t = useTranslations("Products")
-  const format = useFormatter()
+  const formatCents = useFormatCents()
   const [added, setAdded] = useState(false)
 
   // The checkmark is a brief confirmation, so the button can be used again.
@@ -20,11 +21,17 @@ export function ProductCard({ product }: { product: Product }) {
     return () => clearTimeout(timeout)
   }, [added])
 
+  // Quick add takes the first amount that is in stock.
+  const quickVariant = product.variants.find((variant) => variant.stock > 0)
+  const hasPriceRange = product.variants.some(
+    (variant) => variant.priceCents !== product.priceCents
+  )
+
   return (
     <article className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
       <div className="relative aspect-[3/4] overflow-hidden">
         <img
-          src="/pep.webp"
+          src={product.imageUrl}
           alt=""
           width={600}
           height={600}
@@ -41,14 +48,28 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="pointer-events-none absolute inset-x-3 bottom-3 z-10 opacity-0 group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 [@media(hover:none)]:pointer-events-auto [@media(hover:none)]:opacity-100">
           <button
             type="button"
+            disabled={!quickVariant}
             onClick={() => {
-              addToCart(product.id)
+              if (!quickVariant) return
+              addToCart(quickVariant.id)
               setAdded(true)
             }}
-            aria-label={t("addAria", { name: product.name })}
-            className="flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-neutral-900 text-sm font-medium text-white hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 dark:focus-visible:ring-white"
+            aria-label={
+              quickVariant
+                ? t("addAria", {
+                    name: `${product.name} ${quickVariant.label}`,
+                  })
+                : undefined
+            }
+            className="flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-neutral-900 text-sm font-medium text-white hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 dark:focus-visible:ring-white"
           >
-            {added ? <Check className="h-4 w-4" /> : t("quickAdd")}
+            {!quickVariant ? (
+              t("soldOut")
+            ) : added ? (
+              <Check className="h-4 w-4" />
+            ) : (
+              t("quickAdd", { label: quickVariant.label })
+            )}
           </button>
         </div>
       </div>
@@ -65,11 +86,13 @@ export function ProductCard({ product }: { product: Product }) {
             </Link>
           </h3>
           <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
-            {product.spec}
+            {product.variants.map((variant) => variant.label).join(" · ")}
           </p>
         </div>
         <p className="shrink-0 text-sm font-medium text-neutral-900 tabular-nums dark:text-white">
-          {format.number(product.price, { style: "currency", currency: "EUR" })}
+          {hasPriceRange
+            ? t("fromPrice", { price: formatCents(product.priceCents) })
+            : formatCents(product.priceCents)}
         </p>
       </div>
     </article>

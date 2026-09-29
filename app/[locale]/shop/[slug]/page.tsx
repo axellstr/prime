@@ -12,13 +12,15 @@ import {
   ProductPrice,
   ProductPurchase,
   ProductPurchaseProvider,
+  VariantPicker,
 } from "@/components/product-purchase"
 import { Link } from "@/i18n/navigation"
-import { getProduct, products, type Product } from "@/lib/products"
+import { getProduct, getProducts, type Product } from "@/lib/products"
 
 type Params = Promise<{ locale: string; slug: string }>
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const products = await getProducts()
   return products.map((product) => ({ slug: product.slug }))
 }
 
@@ -28,13 +30,16 @@ export async function generateMetadata({
   params: Params
 }): Promise<Metadata> {
   const { locale, slug } = await params
-  const product = getProduct(slug)
+  const product = await getProduct(slug)
   if (!product) return {}
   const t = await getTranslations({ locale, namespace: "Product" })
 
   return {
-    title: `${product.name} ${product.spec}`,
-    description: t("description", { name: product.name, spec: product.spec }),
+    title: product.name,
+    description: t("description", {
+      name: product.name,
+      sizes: sizeList(product),
+    }),
   }
 }
 
@@ -42,19 +47,25 @@ export default async function ProductPage({ params }: { params: Params }) {
   const { locale, slug } = await params
   setRequestLocale(locale)
 
-  const product = getProduct(slug)
+  const product = await getProduct(slug)
   if (!product) notFound()
+  const products = await getProducts()
 
   return (
     <>
       <Navigation7 />
       <main>
         <ProductDetail product={product} />
-        <RelatedProducts product={product} />
+        <RelatedProducts product={product} products={products} />
       </main>
       <Footer5 />
     </>
   )
+}
+
+/** "5 mg · 10 mg": language-neutral, so shared by both locales. */
+function sizeList(product: Product) {
+  return product.variants.map((variant) => variant.label).join(" · ")
 }
 
 const assurances = [
@@ -109,8 +120,8 @@ function ProductDetail({ product }: { product: Product }) {
         <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 lg:sticky lg:top-24 lg:self-start dark:border-neutral-800 dark:bg-neutral-900">
             <img
-              src="/pep.webp"
-              alt={`${product.name} ${product.spec}`}
+              src={product.imageUrl}
+              alt={product.name}
               width={600}
               height={600}
               className="absolute inset-0 h-full w-full object-cover"
@@ -133,8 +144,15 @@ function ProductDetail({ product }: { product: Product }) {
               </div>
 
               <p className="mt-6 max-w-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-                {t("description", { name: product.name, spec: product.spec })}
+                {t("description", {
+                  name: product.name,
+                  sizes: sizeList(product),
+                })}
               </p>
+
+              <div className="mt-8">
+                <VariantPicker />
+              </div>
 
               <ul className="mt-8 space-y-3">
                 {assurances.map(({ key, icon: Icon }) => (
@@ -157,10 +175,16 @@ function ProductDetail({ product }: { product: Product }) {
                       content: (
                         <dl className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-3">
                           <dt className="text-neutral-500">
-                            {t("details.specs.size")}
+                            {t("details.specs.form")}
                           </dt>
                           <dd className="text-neutral-900 dark:text-white">
                             {product.spec}
+                          </dd>
+                          <dt className="text-neutral-500">
+                            {t("details.specs.sizes")}
+                          </dt>
+                          <dd className="text-neutral-900 dark:text-white">
+                            {sizeList(product)}
                           </dd>
                           <dt className="text-neutral-500">
                             {t("details.specs.documentation")}
@@ -206,16 +230,23 @@ function ProductDetail({ product }: { product: Product }) {
   )
 }
 
-function RelatedProducts({ product }: { product: Product }) {
+function RelatedProducts({
+  product,
+  products,
+}: {
+  product: Product
+  products: Product[]
+}) {
   const t = useTranslations("Product")
 
-  // Same size first, then the rest of the catalogue in its usual order.
+  // Products sharing an amount first, then the rest of the catalogue in its
+  // usual order.
+  const labels = new Set(product.variants.map((variant) => variant.label))
+  const sharesSize = (other: Product) =>
+    Number(other.variants.some((variant) => labels.has(variant.label)))
   const related = products
     .filter((other) => other.id !== product.id)
-    .sort(
-      (a, b) =>
-        Number(b.spec === product.spec) - Number(a.spec === product.spec)
-    )
+    .sort((a, b) => sharesSize(b) - sharesSize(a))
     .slice(0, 4)
 
   return (

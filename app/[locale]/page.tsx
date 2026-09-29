@@ -6,6 +6,7 @@ import { Footer5 } from "@/components/blocks/footer-5"
 import { Hero16 } from "@/components/blocks/hero-16"
 import { Showcase1 } from "@/components/blocks/showcase-1"
 import { Navigation7 } from "@/components/blocks/navigation-7"
+import { getProducts } from "@/lib/products"
 
 export default async function Page({
   params,
@@ -14,13 +15,14 @@ export default async function Page({
 }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const products = await getProducts()
 
   return (
     <>
       <Navigation7 />
       <main>
         <Hero16 />
-        <Ecommerce9 />
+        <Ecommerce9 products={products} />
         <CTA13 />
         <Showcase1 />
       </main>

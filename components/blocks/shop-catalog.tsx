@@ -5,31 +5,44 @@ import { ChevronDown } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { ProductCard } from "@/components/product-card"
-import { products } from "@/lib/products"
+import type { Product } from "@/lib/products"
 import { cn } from "@/lib/utils"
 
 const sortKeys = ["featured", "priceAsc", "priceDesc"] as const
 type SortKey = (typeof sortKeys)[number]
 
-// Sizes on offer, smallest first ("2 mg" before "10 mg").
-const sizes = [...new Set(products.map((product) => product.spec))].sort(
-  (a, b) => parseFloat(a) - parseFloat(b)
-)
-
-export function ShopCatalog() {
+export function ShopCatalog({ products }: { products: Product[] }) {
   const t = useTranslations("Shop")
   const [size, setSize] = useState<string | null>(null)
   const [sort, setSort] = useState<SortKey>("featured")
 
+  // Amounts on offer, smallest first ("2 mg" before "10 mg").
+  const sizes = useMemo(
+    () =>
+      [
+        ...new Set(
+          products.flatMap((product) =>
+            product.variants.map((variant) => variant.label)
+          )
+        ),
+      ].sort((a, b) => parseFloat(a) - parseFloat(b)),
+    [products]
+  )
+
   const visible = useMemo(() => {
     const filtered = size
-      ? products.filter((product) => product.spec === size)
+      ? products.filter((product) =>
+          product.variants.some((variant) => variant.label === size)
+        )
       : products
     if (sort === "featured") return filtered
+    // By the cheapest amount, which is the price shown on the card.
     return [...filtered].sort((a, b) =>
-      sort === "priceAsc" ? a.price - b.price : b.price - a.price
+      sort === "priceAsc"
+        ? a.priceCents - b.priceCents
+        : b.priceCents - a.priceCents
     )
-  }, [size, sort])
+  }, [products, size, sort])
 
   const chipClass = (active: boolean) =>
     cn(

@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl"
 
 import { ProductCard } from "@/components/product-card"
-import { products } from "@/lib/products"
+import type { Product } from "@/lib/products"
 
-export function Ecommerce9() {
+export function Ecommerce9({ products }: { products: Product[] }) {
   const t = useTranslations("Products")
 
   return (
